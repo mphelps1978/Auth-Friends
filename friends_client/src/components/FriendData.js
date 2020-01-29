@@ -15,7 +15,7 @@ const FriendData = (props) => {
     .delete('api/friends/id:', id)
     .then(res =>{
       console.log(res);
-      this.forceUpdate();
+
 
     })
     .catch(err =>{

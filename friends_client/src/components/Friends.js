@@ -32,7 +32,6 @@ const Friends = props => {
           <FriendData key={friend.id} friend={friend} />
         ))}
       </div>
-      <AddFriend />
     </div>
   )
 }

@@ -11,6 +11,7 @@ const AddFriend = (props) => {
 
   const addNewFriend = e => {
     e.preventDefault();
+    e.target.reset()
 
     const newFriend = {
       id: Date.now(),
