@@ -33,21 +33,23 @@ const Login = (props) => {
 
 
     return (
-      <div>
+      <div className="loginForm">
         <form onSubmit={login}>
           <input
+            placeholder="Username"
             type="text"
             name="username"
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
           <input
+            placeholder="Password"
             type="password"
             name="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <button>Log in</button>
+          <button>To The Couch!</button>
         </form>
       </div>
     );

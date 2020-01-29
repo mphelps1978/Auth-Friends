@@ -1,10 +1,64 @@
-.App {
-  text-align: center;
+body {
+  background: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app {
+  height: 1000px;
+  max-width: 1280px;
+  margin-left: 15%;
+  background-image: url(./assets/backdrop.jpg);
+  background-repeat: no-repeat;
+  /* background-attachment: fixed;
+  /* background-position: center;*/
+}
+
+.container {
+  margin-top: -30%;
+
+  margin-left: 5%;
+  text-align: center;
+  color: white;
+}
+
+.cards-container {
+  padding-top: 58%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: 5%;
+}
+
+.card {
+  background: #ffcc36;
+  color: black;
+  width: 175px;
+  text-align: right;
+  padding-right: 5px;
+}
+.delete {
+  margin-right: -5%;
+}
+.site-header {
+  margin-top: 20px;
+  padding-bottom: 50px;
+  /* margin-right: 67.5px; */
+  background: #2ac7fc;
+  height: 75px;
+}
+
+.loginForm {
+  text-align: right;
+  margin-top: -25px;
+}
+
+.addForm {
+  padding-top: 100px;
+}
+
+form {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 @media (prefers-reduced-motion: no-preference) {
