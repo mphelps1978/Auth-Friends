@@ -1,59 +1,62 @@
-import React, { useState } from "react";
+import React, { Component } from 'react';
 import axios from "axios";
 
+class Login extends Component {
+    state = {
+        credentials: {
+            username: "",
+            password: ""
+        }
+    };
 
-const Login = (props) => {
+    handleChange = e => {
+        this.setState({
+            credentials: {
+                ...this.state.credentials,
+                [e.target.name]: e.target.value
+            }
+        });
+    };
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+    login = e => {
+        e.preventDefault();
+        axios
+        .post('http://localhost:5000/api/login', this.state.credentials)
+        .then(res => {
+            console.log(res);
+            localStorage.setItem('token', res.data.payload);
+            this.props.history.push('/protected');
+        })
+        .catch(err => console.log("err", err));
+    };
 
+    render(){
+        return (
+            <div className="form">
+                <h2>Login</h2>
+                <form className="login-form" onSubmit={this.login}>
+                    <label htmlFor="username">Username:</label>
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        value={this.state.credentials.username}
+                        onChange={this.handleChange}
+                    />
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="text"
+                        name="password"
+                        placeholder="Password"
+                        value={this.state.credentials.password}
+                        onChange={this.handleChange}
+                        />
 
-
-
-
-  const login = e => {
-    e.preventDefault();
-
-    const credentials = {
-      username,
-      password
+                        <button>Login</button>
+                </form>
+            </div>
+        )
     }
-    axios
-      .post("http://localhost:5000/api/login", credentials)
-      .then(res => {
-        console.log(res);
-        localStorage.setItem('token', res.data.payload)
-        props.history.push('/members')
-
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-
-    return (
-      <div className="loginForm">
-        <form onSubmit={login}>
-          <input
-            placeholder="Username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-          />
-          <input
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <button>To The Couch!</button>
-        </form>
-      </div>
-    );
-
 }
 
 export default Login;

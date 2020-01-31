@@ -1,28 +1,32 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import './App.css';
 
-import './App.css'
+import Login from "./components/Login";
+import PrivateRoute from "./components/PrivateRoute";
+import Friends from "./components/Friends"
 
-
-import PrivateRoute from './components/PrivateRoute'
-import Login from './components/Login'
-import Friends from './components/Friends'
-import Header from './components/Header'
-import AddFriend from './components/AddFriend'
 
 function App() {
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+  };
+
   return (
     <Router>
-      <div className="app">
-      <Header/>
-
-        <Switch>
-          <PrivateRoute path='/add' component={AddFriend} />
-          <PrivateRoute exact path='/members' component={Friends} />
-          <Route path='/login' component={Login} />
-          <Route component={Login} />
-        </Switch>
-      </div>
+    <div className="App">
+    <nav className='nav'>
+      <Link to='/login'>Login  |</Link>
+      <Link to='/friends'>Head to the Couch  |</Link>
+      <Link to='/login' onClick={handleLogout}>Logout</Link>
+    </nav>
+    <Switch>
+      <PrivateRoute path="/friends" component={Friends} />
+      <Route path="/login" component={Login} />
+      <Route component={Login} />
+    </Switch>
+    </div>
     </Router>
   );
 }
